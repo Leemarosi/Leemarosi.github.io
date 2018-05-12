@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ABC Toys</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">ABC TOYS</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+				<li><a href="product.html">Product</a></li>
+				<li><a href="contact.html">Contact Us</a></li>
+				<li><a href="location.html">Location</a></li>
+				<li><a href="offline.html">Offline</a></li>
+    </ul>
+    <form class="navbar-form navbar-left" action="/action_page.php">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</nav>
+<div class="container">
+	<h2>Contact Us</h2>
+		<address>
+                    Email Adress: <a href="mailto:leemarosi@abctoys.in">ABC@abctoys.in</a><br>
+                    Visit our Facebook Page at: <a href="https://abctoys@facebook.in">ABC Toys Facebook Page</a><br />
+                    <strong>ABC Toys</strong><br />
+                    12345 ABC Avenue, Tustin, USA<br>
+                    (800)818-ABC
+                </address>
+
+  <h2>Payment Form</h2>
+  <section>
+		 <form id="contact" name="pay"
+		 action="http://www.thespicebowlcorp.com/cgi-bin/payment"
+		 method="post" >
+		 
+		 <fieldset id="billing">
+		 
+		 <legend>Billing Information (required)</legend>
+		 <label for="fname">First Name</label>
+		 <input name="fname" id="fname" required="required" />
+		 
+		 <label for="lname">Last Name</label>
+		 <input name="lname" id="lname" required="required" />
+		 
+		 <label for="street1">Street Address</label>
+		 <input name="street1" id="street1" required="required" />
+		  
+		 <label for="phone">Phone</label>
+		 <input name="phone" id="phone" type="text" required="required"
+         pattern="^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$"
+		 required="required"/>
+		 
+		 <label>Contact Email</label>
+		  <input name="email" id="email" type="email"/>
+		  
+		  <label >Special Notes</label>
+		  <textarea name="note" id="note">
+		  </textarea>
+		  
+		  <br>
+		  <p>
+		  <input type="submit" value="Submit Order"/>
+		  </p>
+
+		 </fieldset>
+
+
+</form>
+</section>
+</div>
+</body>
+<div class="footer">
+		<footer>
+			<p>More About ABC Toys</p>
+		</footer>
+	</div>
+	
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ABC Toys</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmxpVfW7UQnW1WPK_-p_CV11pjCgyQiGM&callback=getLocation"
+		async defer></script>
+
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">ABC TOYS</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="index.html">Home</a>
+					</li>
+					<li>
+						<a href="product.html">Product</a>
+					</li>
+					<li>
+						<a href="contact.html">Contact Us</a>
+					</li>
+					<li>
+						<a href="location.html">Location</a>
+					</li>
+					<li>
+						<a href="offline.html">Offline</a>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-left" action="/action_page.php">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" name="search">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</nav>
+		<script type="text/javascript" >
+			window.onload = getLocation;
+
+			/*
+			 Here we will check th	e browser supports the Geolocation API; if exists, then we will display the location
+			 */
+			var geo = navigator.geolocation;
+			function getLocation() {
+				if (geo) {
+					geo.getCurrentPosition(displayLocation, error);
+				} else {
+					alert("Oops, Geolocation API is not supported");
+				}
+			}
+
+			/*
+			 This function displays the latitude and longitude when the browser has a location.
+			 */
+			function displayLocation(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+
+				var div = document.getElementById('location');
+				div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
+
+				// Call showMap function once we've updated other div's on the page
+				displayMap(position.coords);
+			}
+
+			function error(err) {
+				alert("Oops, Looks like your browser location is blocked. Please enable the Location and Try Again!");
+			}
+
+			// Global Variable that will hold Google Map
+			var map;
+			/*
+			 This method is used to display Google Map.
+			 */
+			function displayMap(coords) {
+				var googleLatAndLong = new google.maps.LatLng(coords.latitude, coords.longitude);
+
+				var mapOptions = {
+					zoom : 16,
+					center : googleLatAndLong,
+					mapTypeId : google.maps.MapTypeId.ROADMAP,
+				};
+
+				var mapDiv = document.getElementById('map');
+				map = new google.maps.Map(mapDiv, mapOptions);
+
+				var title = 'Your Location';
+				var content = 'You are here: ' + coords.latitude + ', ' + coords.longitude;
+				addMarker(map, googleLatAndLong, title, content);
+
+			}
+
+			/*
+			 This function creates a marker, an InfoWindow and add a click handler on the Marker.
+			 */
+			function addMarker(map, latlong, title, content) {
+				var markerOptions = {
+					position : latlong,
+					map : map,
+					title : title,
+					clickable : true
+				};
+				var marker = new google.maps.Marker(markerOptions);
+				var infoWindowOptions = {
+					content : content,
+					position : latlong
+				};
+				var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+				google.maps.event.addListener(marker, 'click', function() {
+					infoWindow.open(map);
+				});
+			}
+		</script>
+
+
+	<body>
+		<div class="container" >
+			<h3> Current Location:</h3>
+
+			<div id="location" >
+				You are at Latitude: _________, Longitude: _________
+			</div>
+
+			<div id="map"> </div>
+		</div>
+	</body>
+
+	<div class="footer">
+		<footer>
+			<p>More About ABC Toys</p>
+		</footer>
+	</div>
+	
+</html>

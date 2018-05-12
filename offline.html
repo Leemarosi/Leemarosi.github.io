@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>ABC Toys</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	</head>
+	<body>
+
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">ABC TOYS</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="index.html">Home</a>
+					</li>
+					<li>
+						<a href="product.html">Product</a>
+					</li>
+					<li>
+						<a href="contact.html">Contact Us</a>
+					</li>
+					<li>
+						<a href="location.html">Location</a>
+					</li>
+					<li>
+						<a href="offline.html">Offline</a>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-left" action="/action_page.php">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" name="search">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"> </i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</nav>
+		<div class="container">
+			<h2>ABC TOYS</h2>
+		
+				<h3>
+					Offline
+				</h3>
+				<p>Offline is the condition of being capable of but currently not connected to a network of
+					 computers or other devices. The term is frequently used to describe someone who has the 
+					 ability to be connected to the Internet but who is not currently connected to it.</p>
+					 <h3>How to Use the Offline Technologies</h3>
+<p>In this section, we'll look at some common problems developers face. The solutions are somewhat speculative, 
+	given that most of these technologies are new and in some case, not even implemented yet! Nevertheless, 
+	applications like GMail have been using some aspects of these technologies for several years 
+	(as well as the earlier Google Gears plugin), and so we can suggest some meaningful rules of thumb.</p>
+
+<h4>Storing miscellaneous data</h4>
+<p>All things being equal, Web Storage should be your default port of call for storing offline data. 
+	It's a dead-simple API and one that's widely supported. Only consider using the other techniques 
+	if you have a specialised requirement not satisfied by Web Storage.</p>
+
+<h4>Extracting binary resources</h4>
+<p>You will sometimes want to extract binary data from a server so it can be retained locally. 
+	You can download binary files very easily with data type improvements made to XMLHttpRequest</p>
+
+<h4>Storing binary data</h4>
+<p>You can store binary data directly or you can convert it to plain text. For direct binary storage, 
+	you can either use a Web SQL Database with a column of "BLOB" type or the File Writer API. Alternatively, 
+	you can convert the binary content to plain text using a binary encoding technique. The obvious choice is 
+	Base 64, since that's the format commonly used on the net and in HTML5, e.g. it's supported by browsers 
+	via data: URIs. When you come read back your base64-encoded content, you'll find you can include it in 
+	your web app using a data URI, e.g. image.src = "data:image/jpg;base64," + base64data.</p>
+
+<p>Unfortunately, base64 encoding can be quite slow, so use the techniques described in the next section to ensure 
+	the system stays responsive to user events. Alternatively, it might be worthwhile exposing base64-encoded 
+	representations right on your server, so your app can download them and directly store them. It will take 
+	up a little more space, to the tune of around 30%, but the UI will run faster.</p>
+
+<h4>Ensuring the Application Runs Smoothly</h4>
+<p>When dealing with large amounts of data, there's a risk your JavaScript will get so busy processing data, 
+	it won't devote any time to the user interface. JavaScript is fundamentally single-threaded, meaning that 
+	only one thing happens at a time. If the user clicks a button, for instance, and the system is engaged in 
+	a long data activity, the click event will linger on a queue for several seconds and the user will be dismayed.
+	 Even longer delays will likely lead to the browser opening a dialog box asking the user if they want to stop
+	  the script. Best avoided.</p>
+
+<p>Assuming you can't (or don't want to) reduce the amount of data you're storing, the most important thing you 
+	can do is exploit asynchronous APIs. With these APIs, the browser will automatically create a new thread for
+	 you, do the work, and then return results back to the main thread. While the other thread is doing the work,
+	  your user-interface will keep chugging along nicely in the main thread. If you've made XMLHttpRequest before,
+	   you'll already know that it's almost always used in asynchronous mode, so you should do that for any Ajax 
+	   calls. As for storage, most but not all of the APIs have asynchronous modes. LocalStorage is the exception; 
+	   it's only synchronous, so large quantities of data I/O may slow things down. Web SQL Database, IndexedDB,
+	    and File Writer all have both synchronous and asynchronous modes. You should generally favour asynchronous 
+	    mode, even if it makes the programming model more complex.</p>
+
+<p>The other way to do things asynchronously is to use WebWorkers, a way to introduce new threads into your
+	 JavaScript, with your own code running in the derivative thread. However, there are some major limitations;
+	  the storage APIs generally won't work inside a Worker thread, and messages passed in and out of Workers can 
+	  take a long time; I've found transferring several MB to and from a worker will take several seconds and
+	   lock up the user interface. So only use WebWorkers if you can't achieve the same thing with an aysnchronous
+	    storage call. The situation will improve as more browsers support SharedWorkers, which have less limitations
+	     (though more complexity for the developer to deal with).</p>
+
+<h4>Handling simultaneous data opertations</h4>
+<p>It was noted that Web Storage doesn't support transactions, so if you're using it, you have three choices:
+	 prevent multiple clients, use locking, design around it, or hope for the best! The last choice is certainly 
+	 viable, but not for robust web apps. The first choice has been attempted many times, with various tricks
+	  used to constrain an app to a single window, but somehow goes against the grain of the web. Locking is
+	   more feasible and hopefully libraries will evolve to support this pattern. Designing around it is also
+	    possible, as evidenced by various "NOSQL" frameworks for server-side applications and elsewhere. 
+	    For example, in some circumstances, you might be able to just keep appending info instead of 
+	    replacing it (and periodically removing old data).</p>
+
+<p>A simpler solution, in many cases, will be to use transactions, as supported by Web SQL Database and 
+	(in the future) IndexedDB.</p>
+
+<h4>Storing large amounts of data</h4>
+<p>If you are looking to store many Megabytes - or more, beware that there are limits in place, which are 
+	handled in different ways depending on the browser and the particular API we're talking about. 
+	In most cases, there is a magic number of 5MB. For Application Cache and the various offline stores, 
+	there will be no problem if your domain stores under 5MB. When you go above that, various things can 
+	happen: (a) it won't work; (b) the browser will request the user for more space; (c) 
+	the browser will check for special configuration (as with the "unlimited_storage" permission in the 
+	Chrome extension manifest). In the case of Chrome, extensions can request certain permissions, including
+	 "unlimited_storage".</p>
+
+<h4>Detecting if you're online</h4>
+<p>There's an HTML5 API to let you query if a browser is online: navigator.onLine(). It works on recent IE, 
+	Firefox, Opera, and Chrome. You can also listen for these online/offline events using 
+	document.body.addEventListener("online", function () {...} and document.body.addEventListener
+	("offline", function () {...}.</p>
+
+<p>You should generally assume the network is present and make calls as normal. It's only in the event of a server 
+	timeout or related error that you should invoke navigator.onLine. Doing so will serve two purposes: (a) 
+	you can decide if the error is caused by a network outage versus a server-specific outage, and if it's a
+	 network outage, inform the user so they can get back online; (b) you can start watching for the "online" event,
+	  and take action when the user's back online.</p>
+
+<h4>Structuring file data</h4>
+<p>The Filsystem API is designed for this use case. However, it is currently not supported everywhere. 
+Alternatives include IndexedDB and Web SQL Database, which support structured data and queries against 
+those structures. The general guideline would be to use one of those if you're in need of complex queries. 
+But what if you need to store file data? You can use the BLOB type of Web SQL Database, but it's not intended
+ for very large data items and it won't work on all browsers.</p>
+
+<h4>Ensuring cross-browser compatibility</h4>
+<p>As you've probably noticed by now, storage support varies widely across the different browsers. If that's 
+true for the latest versions of each browser, imagine the differences that arise when you consider older 
+versions too. To handle this, you're best off creating - or reusing - a common storage abstraction, with calls 
+such as store.save(id, data) and store.findByIDs(). An example of an open-source abstraction like this is 
+persist-js. An abstraction should determine which storage APIs are available (possibly using the Modernizr API)
+ and then access the store using that API. This will help keep your library portable.</p>
+
+<h4>Protecting against lost data</h4>
+<p>Offline data is best used for caching content, rather than being the primary placeholder for user content. 
+Browsers generally let users delete local storage, and there's a strong risk some users will do so without
+ realising the consequences. Thus, ensure data is frequently sync'd to the server, preferably in an automated 
+ fashion.</p>
+
+<h4>Securing offline data</h4>
+<p>As Nicholas Zakas has pointed out, a risk with offline storage is that users sometimes share the same browser. 
+This may not be true with mobile browsers, but it's certainly true in many family homes and scarily more true 
+in the case of internet cafes. There's a big risk of sensitive data being available to other users. They may 
+not even be malicious users; they might just visit the site as someone else, only to find all of the previous 
+user's locally stored data in front of them.</p>
+<h4>Conclusion</h4>
+<p>A good compromise may be to use the LocalStorage variant, SessionStorage, which deletes data when the window is 
+closed. However, even this is not guaranteed to happen when a user leaves, and sessionStorage partly defeats the
+ purpose of offline storage anyway. Zakas proposes encrypting any sensitive data before storing it locally, 
+ though it remains to be seen if this will become a common practice among developers. There's a counter-argument 
+ that users can encrypt their own file system separately (as happens with many corporate systems), and that users 
+ who leave other data on their hard drive, e.g. cookies and regular data files, are already at significant risk.</p>
+
+<p>For now, use offline storage for caching public data and perhaps other data of a general nature,
+ e.g. an e-book the user has paid to download. For more sensitive data, you should consider the usage context
+  and the nature of the data; sometimes it will make sense to store offline, sometimes not.</p>
+					</div>
+</body>
+	<div class="footer">
+		<footer>
+			<p>More About ABC Toys</p>
+		</footer>
+	</div>
+	</html>

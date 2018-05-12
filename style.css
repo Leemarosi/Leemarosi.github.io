@@ -1,0 +1,39 @@
+
+		.footer {
+			background-color: black;
+			color: white;
+			position: fixed;
+			text-align: center;
+			width: 100%;
+			height: 5%;
+			left: 0;
+			bottom: 0;
+		}
+		.container {
+			padding-bottom: 5em;
+		}
+	#location {
+    margin-bottom: 30px;
+}
+
+#map {
+    height: 100%;
+    position: relative;
+    padding-right: 85px;
+}
+/*Responsive*/
+@media screen and (min-width:481px) {		
+	div.container{
+		margin:15px auto; /* this adds a margin of 15px to the top and bottom of the div with the class of content.  The auto margin applies to the left and right side of the div which is what centers the div in the middle of the page. */
+		width:97%;
+	}
+	div#map, div#location{
+		float:left;
+		width:90%
+		}	
+}	
+
+@media screen and (max-width:480px) {
+	body {width:95%; margin: 10px;}
+	div.container, div#location, div#map {width:90%;}
+}
